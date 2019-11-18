@@ -8,6 +8,26 @@
 #include "Div.hpp"
 //#include "factory.hpp"
 
+Add* addFactory(int firstSignIndex, std::string parsedExpression) {
+		std::string operator1 = "";
+		std::string operator2 = "";
+		double oper1;
+		double oper2;
+		for (int i = 0; i < firstSignIndex; i++) {
+			operator1 += parsedExpression.at(i);
+			oper1 = std::atof(operator1.c_str());
+		}
+		for (int i = firstSignIndex + 1; i < parsedExpression.size(); i++) {
+			operator2 += parsedExpression.at(i);
+			oper2 = std::atof(operator2.c_str());
+			
+		}
+		Op* op1 = new Op(oper1);
+		Op* op2 = new Op(oper2);
+		Add* add = new Add(op1, op2);
+		return add;
+}
+
 int main(int argc, char** argv) {
 	
 		std::string expression = argv[1];
@@ -32,27 +52,8 @@ int main(int argc, char** argv) {
 		std::cout << expression << std::endl;
 		std::cout << parsedExpression << std::endl;
 
-		std::string operator1 = "";
-		std::string operator2;
-		double oper1;
-		double oper2;
 		if (firstSign1 == '+') {
-			for (int i = 0; i < firstSignIndex; i++) {
-				operator1 += parsedExpression.at(i);
-				oper1 = std::atof(operator1.c_str());
-			}
-			for (int i = firstSignIndex + 1; i < parsedExpression.size(); i++) {
-				operator2 += parsedExpression.at(i);
-				oper2 = std::atof(operator2.c_str());
-				
-			}
-			Op* op1 = new Op(oper1);
-			Op* op2 = new Op(oper2);
-			Add* add = new Add(op1, op2);
-//			std::cout << oper1 << std::endl;
-//			std::cout << op1->evaluate() << std::endl;
-//			std::cout << op2->evaluate() << std::endl;
-			std::cout << add->evaluate() << std::endl;
+			Add* add = addFactory(firstSignIndex, parsedExpression);
 		}
 		
 	return 0;
