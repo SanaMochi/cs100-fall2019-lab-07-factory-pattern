@@ -1,13 +1,8 @@
 #include <iostream>
 #include <string>
-#include "base.hpp"
-#include "op.hpp"
-#include "add.hpp"
-#include "sub.hpp"
-#include "Mult.hpp"
-#include "Div.hpp"
-//#include "factory.hpp"
 
+#include "factory.hpp"
+/*
 Add* addFactory(int firstSignIndex, std::string parsedExpression) {
 		std::string operator1 = "";
 		std::string operator2 = "";
@@ -87,9 +82,9 @@ Div* divFactory(int firstSignIndex, std::string parsedExpression) {
 		Div* div = new Div(op1, op2);
 		return div;
 }
-
+*/
 int main(int argc, char** argv) {
-	
+	/*
 		std::string expression = argv[1];
 		std::string parsedExpression = expression;
 		bool firstSign = false;
@@ -129,6 +124,10 @@ int main(int argc, char** argv) {
 			Div* fac = divFactory(firstSignIndex, parsedExpression);
 			std::cout << fac->evaluate() << std::endl;
 		}
-		
+		*/
+		/*
+	Factory* f = new Factory();
+	f->parse(argv, argc);
+	*/
 	return 0;
 }
