@@ -1,8 +1,13 @@
 #include <iostream>
 #include <string>
+#include "base.hpp"
+#include "op.hpp"
+#include "add.hpp"
+#include "sub.hpp"
+#include "Mult.hpp"
+#include "Div.hpp"
+//#include "factory.hpp"
 
-#include "factory.hpp"
-/*
 Add* addFactory(int firstSignIndex, std::string parsedExpression) {
 		std::string operator1 = "";
 		std::string operator2 = "";
@@ -82,15 +87,25 @@ Div* divFactory(int firstSignIndex, std::string parsedExpression) {
 		Div* div = new Div(op1, op2);
 		return div;
 }
-*/
+
 int main(int argc, char** argv) {
-	/*
+
 		std::string expression = argv[1];
-		std::string parsedExpression = expression;
+		std::string parsedExpression = "";
+		std::string substr2 = "";
+
 		bool firstSign = false;
 		char firstSign1;
 		int firstSignIndex = 0;
-		int sizeToErase = 0;
+		
+//		do {
+			
+//		parsedExpression = "";
+//		substr2 = "";
+
+//		firstSign = false;
+//		firstSignIndex = 0;
+
 		for (int i = 0; i < expression.size(); i++) {
 			if ((expression.at(i) == '+' || expression.at(i) == '-' || expression.at(i) == '*' || expression.at(i) == '/') && firstSign == false) {
 				firstSign = true;
@@ -100,17 +115,21 @@ int main(int argc, char** argv) {
 			}
 			else if ((expression.at(i) == '+' || expression.at(i) == '-' || expression.at(i) == '*' || expression.at(i) == '/') && firstSign == true) {
 				//std::string parsedExpression = expression;
-				sizeToErase = expression.size() - i;
-				parsedExpression.erase(i, sizeToErase);
+				parsedExpression = expression.substr(0, i);
+//				sizeToErase = expression.size() - i;
+//				parsedExpression.erase(i, sizeToErase);
+				if (i != expression.at(expression.size() - 1)) {
+					substr2 = expression.substr(i, expression.size() - 1); 
+				}
 			}
 		}
 		std::cout << expression << std::endl;
 		std::cout << parsedExpression << std::endl;
+		std::cout << substr2 << std::endl;
 
 		if (firstSign1 == '+') {
 			Add* sum = addFactory(firstSignIndex, parsedExpression);
 			std::cout << sum->evaluate() << std::endl;
-
 		}
 		else if (firstSign1 == '-') {
 			Sub* diff = subFactory(firstSignIndex, parsedExpression);
@@ -124,7 +143,7 @@ int main(int argc, char** argv) {
 			Div* fac = divFactory(firstSignIndex, parsedExpression);
 			std::cout << fac->evaluate() << std::endl;
 		}
-		*/
+//	} while (substr != "");
 		/*
 	Factory* f = new Factory();
 	f->parse(argv, argc);

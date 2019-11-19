@@ -92,11 +92,12 @@ class Factory{
 	public:
 	Base* parse(char** input, int length) {
 			std::string expression = input[1];
-			std::string parsedExpression = expression;
+			std::string parsedExpression = "";
+			std::string substr2 = "";
+			
 			bool firstSign = false;
 			char firstSign1;
 			int firstSignIndex = 0;
-			int sizeToErase = 0;
 			for (int i = 0; i < expression.size(); i++) {
 				if ((expression.at(i) == '+' || expression.at(i) == '-' || expression.at(i) == '*' || expression.at(i) == '/') && firstSign == false) {
 					firstSign = true;
@@ -104,10 +105,12 @@ class Factory{
 //					std::cout << expression.at(i) << std::endl;
 					firstSignIndex = i;
 				}
-				else if ((expression.at(i) == '+' || expression.at(i) == '-' || expression.at(i) == '*' || expression.at(i) == '/') && firstSign == true) {
-					sizeToErase = expression.size() - i;
-					parsedExpression.erase(i, sizeToErase);
+			else if ((expression.at(i) == '+' || expression.at(i) == '-' || expression.at(i) == '*' || expression.at(i) == '/') && firstSign == true) {
+				parsedExpression = expression.substr(0, i);
+				if (i != expression.at(expression.size() - 1)) {
+					substr2 = expression.substr(i, expression.size() - 1); 
 				}
+			}
 			}
 //			std::cout << expression << std::endl;
 //			std::cout << parsedExpression << std::endl;
