@@ -101,7 +101,7 @@ class Factory{
 				if ((expression.at(i) == '+' || expression.at(i) == '-' || expression.at(i) == '*' || expression.at(i) == '/') && firstSign == false) {
 					firstSign = true;
 					firstSign1 = expression.at(i);
-					std::cout << expression.at(i) << std::endl;
+//					std::cout << expression.at(i) << std::endl;
 					firstSignIndex = i;
 				}
 				else if ((expression.at(i) == '+' || expression.at(i) == '-' || expression.at(i) == '*' || expression.at(i) == '/') && firstSign == true) {
@@ -109,24 +109,24 @@ class Factory{
 					parsedExpression.erase(i, sizeToErase);
 				}
 			}
-			std::cout << expression << std::endl;
-			std::cout << parsedExpression << std::endl;
+//			std::cout << expression << std::endl;
+//			std::cout << parsedExpression << std::endl;
 
 			if (firstSign1 == '+') {
 				Add* sum = addFactory(firstSignIndex, parsedExpression);
-	//			std::cout << sum->evaluate() << std::endl;
+//				std::cout << sum->evaluate() << std::endl;
 			}
 			else if (firstSign1 == '-') {
 				Sub* diff = subFactory(firstSignIndex, parsedExpression);
-	//			std::cout << diff->evaluate() << std::endl;
+//				std::cout << diff->evaluate() << std::endl;
 			}
 			else if (firstSign1 == '*') {
 				Mult* prod = multFactory(firstSignIndex, parsedExpression);
-	//			std::cout << prod->evaluate() << std::endl;
+//				std::cout << prod->evaluate() << std::endl;
 			}
 			else if (firstSign1 == '/') {
 				Div* fac = divFactory(firstSignIndex, parsedExpression);
-	//			std::cout << fac->evaluate() << std::endl;
+//				std::cout << fac->evaluate() << std::endl;
 			}
 	}
 };
