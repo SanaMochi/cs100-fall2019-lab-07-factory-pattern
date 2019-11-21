@@ -174,6 +174,8 @@ class Factory{
 			}
 //			std::cout << expression << std::endl;
 		} while (substr2 != "");
+		Op* op = new Op(resultNum);
+		return op;
 	}
 };
 #endif
