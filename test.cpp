@@ -9,10 +9,12 @@ int main(int argc, char **argv) {
 }
 
 TEST(FactoryAddTest, AddAdd){
-char* c[] = {"test", "1+5+9"};
+char* testInput[2];
+std::string str = "1+5+9";
+testInput[1] = const_cast <char*> (str.c_str());
 Factory* f = new Factory();
-Op* op = (Op*)f->parse(c,2);
-EXPECT_EQ(op->evaluate(), 15);
+//Op* op = f->parse(testInput,1);
+EXPECT_EQ((f->parse(testInput,1))->evaluate(), 15);
 }
 
 TEST(FactoryAddTest, AddSub){
