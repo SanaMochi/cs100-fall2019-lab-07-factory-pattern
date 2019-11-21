@@ -10,7 +10,9 @@
 #include "Div.hpp"
 
 class Factory{
-	double result = 0.0;
+	double resultNum = 0.0;
+	std::string resultStr;
+	
 	Add* addFactory(int firstSignIndex, std::string parsedExpression) {
 			std::string operator1 = "";
 			std::string operator2 = "";
@@ -91,8 +93,11 @@ class Factory{
 			return div;
 	}
 	public:
-	double getResult() {
-		return this->result;
+	double getResultNum() {
+		return this->resultNum;
+	}
+	std::string getResultStr() {
+		return this->resultStr;
 	}
 	
 	Base* parse(char** input, int length) {
@@ -139,28 +144,32 @@ class Factory{
 				Add* sum = addFactory(firstSignIndex, parsedExpression);
 				res =  std::to_string(sum->evaluate());
 				expression = res + substr2;
-				result = sum->evaluate();
+				resultNum = sum->evaluate();
+				resultStr = sum->stringify();
 //				std::cout << sum->evaluate() << std::endl;
 			}
 			else if (firstSign1 == '-') {
 				Sub* diff = subFactory(firstSignIndex, parsedExpression);
 				res =  std::to_string(diff->evaluate());
 				expression = res + substr2;
-				result = diff->evaluate();
+				resultNum = diff->evaluate();
+				resultStr = diff->stringify();
 //				std::cout << diff->evaluate() << std::endl;
 			}
 			else if (firstSign1 == '*') {
 				Mult* prod = multFactory(firstSignIndex, parsedExpression);
 				res =  std::to_string(prod->evaluate());
 				expression = res + substr2;
-				result = prod->evaluate();
+				resultNum = prod->evaluate();
+				resultStr = prod->stringify();
 //				std::cout << prod->evaluate() << std::endl;
 			}
 			else if (firstSign1 == '/') {
 				Div* fac = divFactory(firstSignIndex, parsedExpression);
 				res =  std::to_string(fac->evaluate());
 				expression = res + substr2;
-				result = fac->evaluate();
+				resultNum = fac->evaluate();
+				resultStr = fac->stringify();
 //				std::cout << fac->evaluate() << std::endl;
 			}
 //			std::cout << expression << std::endl;
