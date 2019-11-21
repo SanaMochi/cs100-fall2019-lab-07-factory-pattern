@@ -10,6 +10,7 @@
 #include "Div.hpp"
 
 class Factory{
+	double result = 0.0;
 	Add* addFactory(int firstSignIndex, std::string parsedExpression) {
 			std::string operator1 = "";
 			std::string operator2 = "";
@@ -90,6 +91,10 @@ class Factory{
 			return div;
 	}
 	public:
+	double getResult() {
+		return this->result;
+	}
+	
 	Base* parse(char** input, int length) {
 			std::string expression = input[1];
 			std::string parsedExpression = "";
@@ -98,6 +103,15 @@ class Factory{
 			bool firstSign = false;
 			char firstSign1;
 			int firstSignIndex = 0;
+			
+			do {
+			
+			parsedExpression = "";
+			substr2 = "";
+
+			firstSign = false;
+			firstSignIndex = 0;
+
 			for (int i = 0; i < expression.size(); i++) {
 				if ((expression.at(i) == '+' || expression.at(i) == '-' || expression.at(i) == '*' || expression.at(i) == '/') && firstSign == false) {
 					firstSign = true;
@@ -105,32 +119,52 @@ class Factory{
 //					std::cout << expression.at(i) << std::endl;
 					firstSignIndex = i;
 				}
-			else if ((expression.at(i) == '+' || expression.at(i) == '-' || expression.at(i) == '*' || expression.at(i) == '/') && firstSign == true) {
-				parsedExpression = expression.substr(0, i);
-				if (i != expression.at(expression.size() - 1)) {
-					substr2 = expression.substr(i, expression.size() - 1); 
+				else if ((expression.at(i) == '+' || expression.at(i) == '-' || expression.at(i) == '*' || expression.at(i) == '/') && firstSign == true) {
+					parsedExpression = expression.substr(0, i);
+					if (i != expression.at(expression.size() - 1)) {
+						substr2 = expression.substr(i, expression.size() - 1); 
+					}
 				}
-			}
+				else if (firstSign == true) {
+					parsedExpression = expression;
+				}
 			}
 //			std::cout << expression << std::endl;
 //			std::cout << parsedExpression << std::endl;
+//			std::cout << substr2 << std::endl;
 
+			
+			std::string res;
 			if (firstSign1 == '+') {
 				Add* sum = addFactory(firstSignIndex, parsedExpression);
+				res =  std::to_string(sum->evaluate());
+				expression = res + substr2;
+				result = sum->evaluate();
 //				std::cout << sum->evaluate() << std::endl;
 			}
 			else if (firstSign1 == '-') {
 				Sub* diff = subFactory(firstSignIndex, parsedExpression);
+				res =  std::to_string(diff->evaluate());
+				expression = res + substr2;
+				result = diff->evaluate();
 //				std::cout << diff->evaluate() << std::endl;
 			}
 			else if (firstSign1 == '*') {
 				Mult* prod = multFactory(firstSignIndex, parsedExpression);
+				res =  std::to_string(prod->evaluate());
+				expression = res + substr2;
+				result = prod->evaluate();
 //				std::cout << prod->evaluate() << std::endl;
 			}
 			else if (firstSign1 == '/') {
 				Div* fac = divFactory(firstSignIndex, parsedExpression);
+				res =  std::to_string(fac->evaluate());
+				expression = res + substr2;
+				result = fac->evaluate();
 //				std::cout << fac->evaluate() << std::endl;
 			}
+//			std::cout << expression << std::endl;
+		} while (substr2 != "");
 	}
 };
 #endif
