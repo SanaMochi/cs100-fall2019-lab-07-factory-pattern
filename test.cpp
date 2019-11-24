@@ -43,7 +43,7 @@ Factory* f = new Factory();
 //Op* op = f->parse(testInput,1);
 EXPECT_EQ((f->parse(testInput,1))->evaluate(), 11);
 }
-/*
+
 TEST(FactoryAddTest, SubAdd){
 char* testInput[2];
 std::string str = "10-50+30";
@@ -70,7 +70,7 @@ Factory* f = new Factory();
 //Op* op = f->parse(testInput,1);
 EXPECT_EQ((f->parse(testInput,1))->evaluate(), -16);
 }
-
+/*
 TEST(FactoryAddTest, SubDiv){
 char* testInput[2];
 std::string str = "35-20/-5";

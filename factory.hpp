@@ -116,8 +116,8 @@ class Factory{
 
 			firstSign = false;
 			firstSignIndex = 0;
-
-			for (int i = 0; i < expression.size(); i++) {
+//changed this 0 -> 1 to ignore sign bit if there is one
+			for (int i = 1; i < expression.size(); i++) {
 				if ((expression.at(i) == '+' || expression.at(i) == '-' || expression.at(i) == '*' || expression.at(i) == '/') && firstSign == false) {
 					firstSign = true;
 					firstSign1 = expression.at(i);

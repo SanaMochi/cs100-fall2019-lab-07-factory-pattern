@@ -2,7 +2,7 @@
 #include "factory.hpp"
 
 int main(int argc, char** argv) {
-	char* c[] = {"test", "24/6*9"};
+	//char* c[] = {"test", "25/6*9"};
 	Factory* f = new Factory();
 	//f->parse(c, 2);
 	f->parse(argv, argc);
